@@ -1,12 +1,31 @@
 const gridContainer = document.querySelector('.grid-container')
-let gridItem = document.createElement('div')
+const gridItem = document.querySelector('.grid-item')
 
-
-function Grid16() {
-    for(let i = 0; i < 256; i++) {
-        gridItem.classList.add('grid-item')
-        gridContainer.appendChild(gridItem.cloneNode(true))
+let gridSize = 16; 
+// Creates a 16x16 grid
+function createGrid() {
+    clearGrid()
+    for(let i = 0; i < (gridSize * gridSize); i++) {
+        const div = document.createElement('div')
+        div.classList.add('grid-item')
+        div.addEventListener('mouseover', function(e) {
+            e.target.style.backgroundColor = "black";
+        })
+        gridContainer.appendChild(div)
     }
 }
+createGrid();
 
-Grid16();
+//Function to Delete grid and generate a new one
+ function clearGrid() {
+    while (gridContainer.firstChild)
+        gridContainer.removeChild(gridContainer.firstChild)
+    }
+//Buttons:
+//Clear button
+const clearBtn = document.querySelector('#clear')
+clearBtn.addEventListener('click', function(e) {
+    clearGrid()
+    createGrid()
+});
+ 
