@@ -10,8 +10,18 @@
 </head>
 <body>
     <h1>ETCH-A-SKETCH</h1>
+        <div class="buttons">
+        <button id="clear">clear</button>
+        <input id="slider-input" 
+            type="range" 
+            min="2" 
+            max="70"
+            step="1"
+            value="16"
+            oninput="this.nextElementSibling.value = this.value">
+        <span>Number of sides: <output id = slider-value></output></span>
+    </div>
     <div class="grid-container">
-        
     </div>
 </body>
 </html>
