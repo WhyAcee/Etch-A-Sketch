@@ -1,8 +1,24 @@
 const gridContainer = document.querySelector('.grid-container')
 const gridItem = document.querySelector('.grid-item')
 
-let gridSides = 16; 
-// Creates a 16x16 grid
+//Allows user to toggle pen
+let togglePen = false;
+const PenIcon = document.querySelector("#pendicator")
+
+window.addEventListener("mousedown",()=> {
+    if(togglePen === false) {
+        PenIcon.style.borderColor = "green"
+        return togglePen = true;
+    } else if(togglePen === true) {
+        PenIcon.style.borderColor = "black"
+        return togglePen = false;
+    }
+})
+
+
+// Creates a grid
+let gridSides = 16;
+
 function createGrid() {
     clearGrid()
     gridContainer.style.gridTemplateColumns = (`repeat(${gridSides}, ${600 / gridSides}px)`)
@@ -13,7 +29,9 @@ function createGrid() {
         div.classList.add('grid-item')
         div.style.padding = `${200 / gridSides}px`
         div.addEventListener('mouseover', function(e) {
-            e.target.style.backgroundColor = `${defaultColor}`;
+            if (togglePen === true) {
+                e.target.style.backgroundColor = `${defaultColor}`;
+            }
         })
         gridContainer.appendChild(div)
     }
